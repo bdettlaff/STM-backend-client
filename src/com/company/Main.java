@@ -19,20 +19,22 @@ public class Main {
             String echoString; // treść wysyłana serwerowif
             String response; // odpowiedx z serwera
 
-            do {
-                System.out.println("Enter string to be echoed : ");
-                echoString = scanner.nextLine();
+            //do {
+
+                int[][]gameboard = Game.createEmptyGameboard();
+                echoString=ParsingGameboard.parseGameboardFromIntToString(gameboard);
 
                 stringToEcho.println(echoString);
                 if (!echoString.equals("exit")) {
                     response = echoes.readLine();
                     System.out.println(response);
                 }
-            }
-            while (!echoString.equals("exit"));
+
+            //}
+            //while (!echoString.equals("exit"));
 
         } catch (IOException e) {
-            System.out.println("Clietn error!!!!!1");
+            System.out.println("Client error!!!!!1");
         }
     }
 }
