@@ -53,15 +53,22 @@ public class Game {
     public String shot(){
         Scanner scanner = new Scanner(System.in);
         String temp;
-        //while(true) {
-            System.out.println("Podaj współrzędne Strzału \"X.Y\"");
-            temp = scanner.nextLine();
-            int x=Integer.parseInt(temp.split(" ")[0]);
-            int y=Integer.parseInt(temp.split(" ")[1]);
-            if(x<=0 || x>9 || y<=0 || y>9){
-                return temp;
+        while(true) {
+            try {
+                System.out.println("Podaj współrzędne Strzału \"X.Y\"");
+                temp = scanner.nextLine();
+                int x = Integer.parseInt(temp.split(" ")[0]);
+                int y = Integer.parseInt(temp.split(" ")[1]);
+                if (x >= 0 && x < 9 && y >= 0 && y < 9) {
+
+                    return temp;
+
+
+                }
+            } catch (Exception e) {
+                System.out.println("Błędne współrzędne");
             }
-        //}
-        return temp;
+        }
+
     }
 }

@@ -21,14 +21,13 @@ public class Main {
             String[][] gameboard;
             String[][] gameboardEnemy;
             String temp;
+            String turn;
             p=input.readLine();
             gameboard = ParsingGameboard.createEmptyGameboard();
             gameboard = game.placingShips(gameboard);
             output.println(p+" "+"PS " + ParsingGameboard.parseGameboardFromStringTabToString(gameboard));
             System.out.println(p);
             temp=input.readLine();
-            System.out.println("xddddd");
-            System.out.println(temp);
             gameboard=ParsingGameboard.parseGameboardFromStringToStringTab(temp.split(" ")[1]);
             gameboardEnemy=ParsingGameboard.parseGameboardFromStringToStringTab(temp.split(" ")[2]);
             System.out.println("TWOJE STATKI:");
@@ -36,25 +35,34 @@ public class Main {
             System.out.println("TWOJE STRZAŁY:");
             printGameboard(gameboardEnemy);
             System.out.println();
-            while(true){
-
-                String shot = game.shot();
-                output.println(p+" "+"SH"+" "+shot);
+            while(true) {
                 temp=input.readLine();
-                if(temp.equals("Błędny strzał") || temp.equals("Win")){
+                if(temp.equals("Lost")){
                     System.out.println(temp);
                     break;
                 }
-                else {
-                    gameboard = ParsingGameboard.parseGameboardFromStringToStringTab(temp.split(" ")[1]);
-                    gameboardEnemy = ParsingGameboard.parseGameboardFromStringToStringTab(temp.split(" ")[2]);
-                    System.out.println("TWOJE STATKI:");
-                    printGameboard(gameboard);
-                    System.out.println("TWOJE STRZAŁY:");
-                    printGameboard(gameboardEnemy);
-                    System.out.println();
-                }
+                if (temp.equals("Twoja Tura")) {
+                    System.out.println(temp);
+                    String shot = game.shot();
+                    output.println(p + " " + "SH" + " " + shot);
+                    temp = input.readLine();
+                    if (temp.equals("Błędny strzał") || temp.equals("Win")) {
+                        System.out.println(temp);
+                        break;
+                    } else {
+                        gameboard = ParsingGameboard.parseGameboardFromStringToStringTab(temp.split(" ")[1]);
+                        gameboardEnemy = ParsingGameboard.parseGameboardFromStringToStringTab(temp.split(" ")[2]);
+                        System.out.println("TWOJE STATKI:");
+                        printGameboard(gameboard);
+                        System.out.println("TWOJE STRZAŁY:");
+                        printGameboard(gameboardEnemy);
+                        System.out.println();
+                    }
 
+                }
+                else{
+                    System.out.println("Tura Przeciwnika");
+                }
             }
 
 
