@@ -15,6 +15,7 @@ public class Main {
             BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));// strig odebrany z serwera
             PrintWriter output = new PrintWriter(socket.getOutputStream(), true); // string wsłany do serwera
 
+            Game game = new Game();
             Scanner scanner = new Scanner(System.in);
             String p ="";
             String[][] gameboard;
@@ -22,6 +23,7 @@ public class Main {
             String temp;
             p=input.readLine();
             gameboard = ParsingGameboard.createEmptyGameboard();
+            gameboard = game.placingShips(gameboard);
             output.println(p+" "+"PS " + ParsingGameboard.parseGameboardFromStringTabToString(gameboard));
             System.out.println(p);
             temp=input.readLine();
@@ -29,8 +31,31 @@ public class Main {
             System.out.println(temp);
             gameboard=ParsingGameboard.parseGameboardFromStringToStringTab(temp.split(" ")[1]);
             gameboardEnemy=ParsingGameboard.parseGameboardFromStringToStringTab(temp.split(" ")[2]);
+            System.out.println("TWOJE STATKI:");
             printGameboard(gameboard);
+            System.out.println("TWOJE STRZAŁY:");
             printGameboard(gameboardEnemy);
+            System.out.println();
+            while(true){
+
+                String shot = game.shot();
+                output.println(p+" "+"SH"+" "+shot);
+                temp=input.readLine();
+                if(temp.equals("Błędny strzał") || temp.equals("Win")){
+                    System.out.println(temp);
+                    break;
+                }
+                else {
+                    gameboard = ParsingGameboard.parseGameboardFromStringToStringTab(temp.split(" ")[1]);
+                    gameboardEnemy = ParsingGameboard.parseGameboardFromStringToStringTab(temp.split(" ")[2]);
+                    System.out.println("TWOJE STATKI:");
+                    printGameboard(gameboard);
+                    System.out.println("TWOJE STRZAŁY:");
+                    printGameboard(gameboardEnemy);
+                    System.out.println();
+                }
+
+            }
 
 
 
