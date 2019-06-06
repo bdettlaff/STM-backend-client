@@ -16,12 +16,10 @@ public class Main {
             PrintWriter output = new PrintWriter(socket.getOutputStream(), true); // string wsłany do serwera
 
             Game game = new Game();
-            Scanner scanner = new Scanner(System.in);
             String p ="";
             String[][] gameboard;
             String[][] gameboardEnemy;
             String temp;
-            String turn;
             p=input.readLine();
             gameboard = ParsingGameboard.createEmptyGameboard();
             gameboard = game.placingShips(gameboard);
