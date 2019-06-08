@@ -50,7 +50,10 @@ public class Client {
                     }
 
                 }
-                else{
+                if(temp.equals("Zaczekaj aż przeciwnik ustawi Statki")){
+                    System.out.println(temp);
+                }
+                if(temp.equals("Tura Przeciwnika")){
                     temp = input.readLine();
                     parseAndPrint(temp);
                     System.out.println("Tura Przeciwnika");
@@ -64,29 +67,13 @@ public class Client {
         }
     }
 
-
-    public static void printGameboard(String[][] gameboard) {
-        System.out.println("  0 1 2 3 4 5 6 7 8 9");
-        for (int i = 0; i < 10; i++) {
-            System.out.print(i+" ");
-            for (int j = 0; j < 10; j++) {
-
-
-                System.out.print(gameboard[i][j]+" ");
-
-            }
-            System.out.println();
-
-        }
-        System.out.println();
-    }
     public void parseAndPrint(String temp){
         gameboard=ParsingGameboard.parseGameboardFromStringToStringTab(temp.split(" ")[1]);
         gameboardEnemy=ParsingGameboard.parseGameboardFromStringToStringTab(temp.split(" ")[2]);
         System.out.println("TWOJE STATKI:");
-        printGameboard(gameboard);
+        ParsingGameboard.printGameboard(gameboard);
         System.out.println("TWOJE STRZAŁY:");
-        printGameboard(gameboardEnemy);
+        ParsingGameboard.printGameboard(gameboardEnemy);
         System.out.println();
     }
 
